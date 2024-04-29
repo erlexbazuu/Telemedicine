@@ -1,0 +1,105 @@
+{% load static %}
+
+<!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-flex align-items-center fixed-top">
+  <div class="container d-flex justify-content-between">
+    <div class="contact-info d-flex align-items-center">
+      <i class='bx bx-envelope'></i><a href="mailto:contact@example.com">telemed@gmail.com</a>
+      <i class='bx bx-mobile-alt'></i>+254 791 0067 92
+    </div>
+    <div class="d-none d-lg-flex social-links align-items-center">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto">Telemedicine Solution Platform</h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        {% if not request.user.is_authenticated %}
+        <li><a class="nav-link scrollto active" id="home-btn" href="{% url 'home' %}">Home</a></li>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <li><a class="nav-link scrollto" id="about-btn" href="#about">About</a></li>
+        <li><a class="nav-link scrollto" id="services-btn" href="#services">Services</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <li><a class="nav-link scrollto active" id="appointment-btn" href="{% url 'make_appointment' %}">Request for an Appointment</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Accounts
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Register
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'register_patient' %}">Register as a Patient</a></li>
+                <li><a class="dropdown-item" href="{% url 'register_doctor' %}">Register as a Doctor</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'user_login' %}">Login as a Patient</a></li>
+                <li><a class="dropdown-item" href="{% url 'user_login' %}">Login as a Doctor</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Accounts
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="#">Welcome, {{ request.user.username }}</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </ul>
+    </nav><!-- .navbar -->
+  </div>
+</header>
+<!-- End Header -->
+
+<!-- End Header -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const homeBtn = document.getElementById('home-btn');
+    const appointmentBtn = document.getElementById('appointment-btn');
+    const aboutBtn = document.getElementById('about-btn');
+    const servicesBtn = document.getElementById('services-btn');
+
+    appointmentBtn.addEventListener('click', function() {
+      aboutBtn.style.display = 'none';
+      servicesBtn.style.display = 'none';
+    });
+
+    homeBtn.addEventListener('click', function() {
+      aboutBtn.style.display = 'block';
+      servicesBtn.style.display = 'block';
+    });
+  });
+</script>
+
+

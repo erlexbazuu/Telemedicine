@@ -1,0 +1,261 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+{% block stylesheets %}
+
+<!--<h1>Hello, Welcome to the Landing page </h1>-->
+<br><br>
+<br><br>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+ <!-- ======= Hero Section ======= -->
+ <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Welcome to Telemedicine Solution Platform</h1>
+      <h2><strong>Accessible healthcare, anywhere</strong></h2>
+      <h5>We provide innovative solutions to make healthcare accessible, efficient, and cost-effective
+        . Our platform offers virtual consultations, prescription services, and a virtual doctor service 
+        to ensure that you receive the best healthcare possible, no matter where you are.
+      </h5>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      
+    </div>
+  </section>
+  <!-- End Hero -->
+<main id="main">
+<br>
+<br>
+<hr>
+ <!-- ======= About Section ======= -->
+ <section id="about" class="about">
+    <div class="container-fluid">
+
+        <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+          <h3>Telemedicine Solution Platform</h3>
+          <p>Welcome to our Telemedicine Solution Platform, where cutting-edge technology meets 
+            compassionate care. Our platform aims to break down barriers to healthcare access by providing a convenient and efficient way
+             for patients to connect with healthcare professionals from the comfort of their own homes.</p>
+
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-fingerprint"></i></div>
+            <h4 class="title"><a href="">Aim</a></h4>
+            <p class="description">Our platform's primary aim is to revolutionize the healthcare landscape by 
+                offering remote consultations, diagnosis, and treatment options tailored to individual needs. 
+                We are committed to 
+                improving the accessibility, affordability, and quality of healthcare services for everyone.</p>
+          </div>
+
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-gift"></i></div>
+            <h4 class="title"><a href="">Objectives</a></h4>
+            <p class="description">Whether you're seeking medical advice, prescriptions, or specialized care, 
+                our platform empowers you to take control of your health journey with ease. 
+                From virtual appointments to secure messaging, our user-friendly interface ensures a 
+                seamless experience, allowing you to receive the care you deserve, anytime, anywhere</p>
+          </div>
+
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-atom"></i></div>
+            <h4 class="title"><a href="">How It Works</a></h4>
+            <p class="description">With our telemedicine platform, getting the care you need is simple. 
+                Users can easily schedule appointments, communicate with healthcare professionals, and 
+                access medical records securely from any device. Our streamlined process ensures efficient 
+                communication and personalized care, 
+                ensuring that your health needs are met promptly and effectively.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- End About Section -->
+<hr>
+ <!-- ======= Services Section ======= -->
+ <section id="services" class="services">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Services</h2>
+        <p>Explore our array of specialized services aimed at providing personalized and convenient healthcare solutions for you.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="icon-box">
+            <div class="icon"><i class='bx bx-message-square'></i></div>
+            <h4>Remote Consultation</h4>
+            <p>We provide a platform for remote consultations with doctors, using advanced video call, SMS, 
+              and chat features to deliver seamless medical care to patients, regardless of their location.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <div class="icon-box">
+            <div class="icon"><i class='bx bx-pulse'></i></div>
+            <h4>Virtual Doctor</h4>
+            <p>We provide the virtual doctor service, connecting patients with licenced and experienced 
+              medical professionals for online consultations, diagnosis, and treatment. Our doctors to provide 
+              expert medical advice and guidance to patients, via video calls, or chat.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <div class="icon-box">
+            <div class="icon"><i class='bx bx-band-aid'></i></div>
+            <h4>Prescription Services</h4>
+            <p>We offer prescription services,allowing patients to receive medical prescriptions online, without 
+              the need for a physical visit to the doctor. Our online prescription services are fast, secure, and compliant
+              with all necessary regulations, ensuring the safety and well-being of our patients.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- End Services Section -->
+<hr>
+<!-- ======= Gallery Section ======= -->
+<section id="gallery" class="gallery">
+<div class="container">
+
+    <div class="section-title">
+    <h2>Gallery</h2>
+    <p>Explore our visual journey through the world of telemedicine - where technology meets healthcare for a brighter future</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row g-0">
+
+    <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+        <a href="{% static 'gallery-1.jpg' %}" class="galelry-lightbox">
+            <img src="{% static 'gallery-1.jpg' %}" alt="" class="img-fluid">
+        </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+        <a href="{% static 'gallery-2.jpg' %}" class="galelry-lightbox">
+            <img src="{% static 'gallery-2.jpg' %}" alt="" class="img-fluid">
+        </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+        <a href="{% static 'gallery-3.jpg' %}" class="galelry-lightbox">
+            <img src="{% static 'gallery-3.jpg' %}" alt="" class="img-fluid">
+        </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+        <a href="{% static 'gallery-4.jpg' %}" class="galelry-lightbox">
+            <img src="{% static 'gallery-4.jpg' %}" alt="" class="img-fluid">
+        </a>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+</section>
+<!-- End Gallery Section -->
+<hr>
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+    
+        <div class="section-title">
+        <h2>Contact</h2>
+        <p>Have a question or concern? Leave us a message, and our telemedicine team will get back to you promptly.</p>
+        </div>
+    </div>
+    <div>
+    <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.818295369613!2d34.59480507409133!3d-0.006410635564570389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa9f1efed77e9%3A0xb9c8a555cc010ad6!2sMaseno%20University-Kisumu%20Campus!5e0!3m2!1sen!2ske!4v1711545485231!5m2!1sen!2ske" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+    
+        <div class="col-lg-4">
+            <div class="info">
+            <div class="address">
+                <i class='bx bx-map'></i>
+                <h4>Location:</h4>
+                <p>Maseno University, Main Campus, Kisumu</p>
+            </div>
+    
+            <div class="email">
+                <i class='bx bx-envelope'></i>
+                <h4>Email:</h4>
+                <p>telemed@gmail.com</p>
+            </div>
+    
+            <div class="phone">
+                <i class='bx bx-mobile-alt'></i>
+                <h4>Call:</h4>
+                <p>+254 7-910 67-92</p>
+            </div>
+    
+            </div>
+    
+        </div>
+    
+        <div class="col-lg-8 mt-5 mt-lg-0">
+    
+            <form action="{% url 'contact_us' %}" method="post" role="form" class="php-email-form">
+                {% csrf_token %}
+                <div class="row">
+                <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+    
+        </div>
+    
+        </div>
+    
+    </div>
+</section>
+<!-- End Contact Section -->
+
+<!-- ======= Appointment Section ======= -->
+<!-- End Appointment Section --> 
+
+</main>
+<hr>
+
+{% endblock %}
+{% endblock %}
+{% block footer %}
+{{ block.super }}
+{% endblock %}

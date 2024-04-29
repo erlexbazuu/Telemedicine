@@ -1,0 +1,50 @@
+{% extends 'master.html' %}
+{% block title %}
+  Patient Appointments Requests
+{% endblock %}
+{% block content %}
+<br><br><br><br><br><br>
+  <h1>My Appointment Requests</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Doctor</th>
+        <th scope="col">Date and Time</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Prescription</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
+        <tr>
+          <td>{{ appointment.doctor.user.get_full_name }}</td>
+          <td>{{ appointment.date_time }}</td>
+          <td>{{ appointment.reason }}</td>
+          <td>
+            {% if appointment.prescription %}
+              <a href="{{ appointment.prescription.url }}" target="_blank">View Prescription</a>
+            {% else %}
+              No prescription uploaded
+            {% endif %}
+          </td>
+          <td>
+            {% with appointment.status.status as status %}
+              {% if status == 'pending' %}
+                <span style="color: orange;">{{ status|capfirst }}</span>
+              {% elif status == 'accepted' %}
+                <span style="color: green;">{{ status|capfirst }}</span>
+              {% elif status == 'denied' %}
+                <span style="color: red;">{{ status|capfirst }}</span>
+              {% endif %}
+            {% endwith %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+{% block footer %}
+{{ block.super }}
+{% endblock %}

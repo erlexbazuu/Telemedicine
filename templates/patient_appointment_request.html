@@ -1,0 +1,61 @@
+{% extends 'master.html' %}
+{% block title %}
+    Telemedicine Solution Platform - Patient Appointment Request
+{% endblock %}
+{% block content %}
+<div class="col-md-6 offset-md-3">
+<br><br><br><br><br><br><br><br><br><br><br><br>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+<p>Dear Patient,</p>
+<p>We kindly request your assistance in selecting the area of specialization pertaining to your health concern, along with your preferred doctor within that field. Your choice ensures tailored care and efficient assistance.<br><br>Thank you for your cooperation.</p>
+<br>
+<form method="post" action="{% url 'request_appointment' %}">
+    {% csrf_token %}
+    {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              Your Form Has Errors
+              {% for field in form %}
+                  {% if field.errors %}
+                      {{ field.errors }}
+                  {% endif %}
+              {% endfor %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {{ form.as_p }}
+    <br/>
+      <button type="submit" class="btn btn-primary">Request Appointment</button>
+  </form>
+</div>
+<script>
+    document.getElementById('id_specialization').addEventListener('change', function() {
+        const specializationId = this.value;
+    
+        // Fetch doctors related to the selected specialization
+        fetch(`/doctors_by_specialization/${specializationId}/`)
+            .then(response => response.json())
+            .then(doctors => {
+                const doctorSelect = document.getElementById('id_doctor');
+    
+                // Clear existing options
+                doctorSelect.innerHTML = '';
+    
+                // Add new options based on the fetched doctors
+                doctors.forEach(doctor => {
+                    const option = document.createElement('option');
+                    option.value = doctor.pk;
+                    option.textContent = doctor.first_name + ' ' + doctor.last_name;
+                    doctorSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching doctors:', error));
+    });
+    </script>
+  {% endblock %}

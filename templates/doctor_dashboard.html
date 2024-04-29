@@ -1,0 +1,327 @@
+{% extends 'master.html' %}
+{% block title %}
+    Doctor Dashboard
+{% endblock %}
+{% block content %}
+<br><br><br><br><br><br><br>
+<style>
+    body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f0f0f0;
+}
+
+#menu-button {
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+nav#slide-out-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 20%;
+    height: 100vh;
+    background-color: #ddd;
+    transition: left 0.3s ease-in-out;
+}
+nav#slide-out-menu ul {
+    color: #000; /* Set the font color to black */
+}
+
+nav#slide-out-menu.open {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 2rem;
+
+}
+
+nav li {
+    margin-bottom: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+}
+
+main {
+    padding: 1rem 2rem;
+}
+
+.search-bar {
+    margin-bottom: 1rem;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main-content {
+    background-color: #fff;
+    padding: 1rem;
+    /* display: none; */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+}
+
+/* Add this to your existing CSS */
+/* Set background color and padding for the form */
+form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Set font size and weight for form labels */
+form label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Set width and padding for form inputs */
+form input[type="text"],
+form input[type="datetime-local"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+/* Set background color and padding for the submit button */
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Set background color for the submit button on hover */
+form button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+/* Set font size and weight for error messages */
+.alert-warning {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Set margin bottom for the error messages */
+.alert {
+  margin-bottom: 20px;
+}
+
+
+form#appointmentForm button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+</style>
+<body>
+    <header>
+        <h1>Doctor Dashboard</h1>
+        <button id="menu-button">&#9776;</button>
+    </header>
+    <nav id="slide-out-menu">
+        <br><br><br><br><br>
+        <ul>
+            <li><a href="#home-section">Home</a></li>
+            <li><a href="#" id="my-information-link">My Information</a></li>
+            <li><a href="#my-relatives-section">Prescriptions</a></li>
+            <li><a href="#my-appointments-section">Appointment Requests</a></li>
+            <li><a href="#my-chat-section">Chats</a></li>
+            <li><a href="#billing-reports-section">Billing Reports</a></li>
+            <li><a href="#call-section">Calls</a></li>
+        </ul>
+    </nav>
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+    <main>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for available doctors">
+        </div>
+        <div class="main-content" id="home-section">
+            <h2>Home</h2>
+            <!-- Add home content here -->
+        </div>
+<!-- Existing code for patient dashboard -->
+<div class="main-content" id="my-information-section">
+    <h2>My Information</h2>
+    <br/>
+    <p>Click the button below to update your personal details</p>
+    <form action="{% url 'doctor_update_view' %}" method="get">
+      <button type="submit">Personal Details Update</button>
+    </form>
+    
+</div>
+<!-- Existing code below this line -->
+        <div class="main-content" id="my-relatives-section">
+            <h2>Prescriptions</h2>
+            <p>Hello Doctor!<br> Just a quick reminder: Could you please click on the 'Prescription' button? This will help you upload the prescription .pdf files for the patients who have sent appointment requests. 
+              <br>Thanks a bunch for your cooperation!</P>
+              <form action="{% url 'doctor_appointments' %}" method="get">
+                <button type="submit">Prescriptions</button>
+              </form>
+        </div>
+        <!-- Existing code above this line -->
+
+<!-- Existing code for patient dashboard -->
+<div class="main-content" id="my-appointments-section">
+    <h2>Appointment Requests</h2>
+    <!-- Add appointment details here -->
+    <p>Kindly, for efficiency click the Appointments button below to view your appointment request.</p>
+    <form action="{% url 'doctor_appointments' %}" method="get">
+      <button type="submit">Appointments</button>
+    </form>
+    <br>
+    <hr>
+</div>
+<!-- Existing code below this line -->
+
+        <div class="main-content" id="my-chat-section">
+            <h2>Chats</h2>
+            <!-- Add chat content here -->
+        </div>
+        <div class="main-content" id="billing-reports-section">
+            <h2>Billing Reports</h2>
+            <!-- Add billing reports here -->
+        </div>
+        <div class="main-content" id="call-section">
+            <h2>Calls</h2>
+            <!-- Add call content here -->
+        </div>
+    </main>
+    <script>
+         const menuButton = document.getElementById('menu-button');
+        const slideOutMenu = document.getElementById('slide-out-menu');
+        const navLinks = document.querySelectorAll('nav#slide-out-menu a');
+
+        menuButton.addEventListener('click', () => {
+            slideOutMenu.classList.toggle('open');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+
+                // Hide all sections
+                const sections = document.querySelectorAll('.main-content');
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Display the target section
+                const targetSectionId = event.target.getAttribute('href');
+                const targetSection = document.querySelector(targetSectionId);
+                targetSection.style.display = 'block';
+
+                // Close the slide-out menu
+                slideOutMenu.classList.remove('open');
+            });
+        });
+
+        // Show the 'Home' section by default
+        document.addEventListener('DOMContentLoaded', () => {
+            const homeSection = document.querySelector('#home-section');
+            homeSection.style.display = 'block';
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+  const myInformationLink = document.getElementById("my-information-link");
+  const myInformationSection = document.getElementById(
+    "my-information-section"
+  );
+
+  myInformationLink.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Hide all other sections
+    const sections = document.querySelectorAll(".main-content");
+    sections.forEach((section) => {
+      section.style.display = "none";
+    });
+
+    // Display the "My Information" section
+    myInformationSection.style.display = "block";
+
+    // Fetch user data via AJAX
+    fetch("/my-information/")
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the "My Information" section with user data
+        myInformationSection.innerHTML = `
+          <h2>My Information</h2>
+          <p>Name: ${data.first_name} ${data.last_name}</p>
+          <p>Email: ${data.email}</p>
+          <p>Date of Birth: ${data.date_of_birth}</p>
+          <p>User Type: ${data.user_type}</p>
+        `;
+      });
+
+    // Optionally, you can also close the slide-out menu
+    const slideOutMenu = document.getElementById("slide-out-menu");
+    slideOutMenu.classList.remove("open");
+  });
+});
+
+document.getElementById('id_specialization').addEventListener('change', function() {
+        const specializationId = this.value;
+    
+        // Fetch doctors related to the selected specialization
+        fetch(`/doctors_by_specialization/${specializationId}/`)
+            .then(response => response.json())
+            .then(doctors => {
+                const doctorSelect = document.getElementById('id_doctor');
+    
+                // Clear existing options
+                doctorSelect.innerHTML = '';
+    
+                // Add new options based on the fetched doctors
+                doctors.forEach(doctor => {
+                    const option = document.createElement('option');
+                    option.value = doctor.pk;
+                    option.textContent = doctor.first_name + ' ' + doctor.last_name;
+                    doctorSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching doctors:', error));
+    });
+    </script>
+</body>
+
+{% endblock %}
+{% block footer %}
+{{ block.super }}
+{% endblock %}

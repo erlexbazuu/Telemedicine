@@ -1,0 +1,58 @@
+{% extends 'master.html' %}
+{% block title %}
+    Doctor Appointments
+{% endblock %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br>
+  <h1>Doctor Dashboard</h1>
+
+  <h2>Appointments</h2>
+  {% if appointments or anonymous_appointments %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Appointment Time</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Prescription</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <br><br><br>
+        <tbody>
+          {% for appointment in appointments %}
+            <tr>
+              <td>{{ appointment.patient.user.get_full_name }}</td>
+              <td>{{ appointment.date_time }}</td>
+              <td>{{ appointment.reason }}</td>
+              <td><input type="file" name="prescription_{{ appointment.id }}"></td>
+              <td>
+                <!-- Add action buttons for accepting/rejecting requests -->
+                <a href="{% url 'accept_appointment' appointment.id %}" class="btn btn-success btn-sm">Accept</a>
+                <a href="{% url 'deny_appointment' appointment.id %}" class="btn btn-danger btn-sm">Deny</a>
+              </td>
+            </tr>
+          {% endfor %}
+          {% for anonymous_appointment in anonymous_appointments %}
+  <tr>
+    <td>{{ anonymous_appointment.anonymous_user_id.get_full_name }}</td>
+    <td>{{ anonymous_appointment.date_time }}</td>
+    <td>{{ anonymous_appointment.reason }}</td>
+    <td><input type="file" name="anonymous_prescription_{{ anonymous_appointment.id }}"></td>
+    <td>
+      <!-- Add action buttons for accepting/rejecting requests -->
+      <a href="{% url 'accept_appointment' anonymous_appointment.id %}" class="btn btn-success btn-sm">Accept</a>
+      <a href="{% url 'deny_appointment' anonymous_appointment.id %}" class="btn btn-danger btn-sm">Deny</a>
+    </td>
+  </tr>
+{% endfor %}
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary">Upload Prescriptions</button>
+    </form>
+  {% else %}
+    <p>No appointments found.</p>
+  {% endif %}
+{% endblock %}
